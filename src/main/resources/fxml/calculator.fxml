@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="main-layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watercalculator.controller.CalculatorController">
+
+    <!-- TOPBAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+            <padding>
+                <Insets bottom="0" left="20" right="20" top="0" />
+            </padding>
+
+            <Label styleClass="topbar-brand" text="Water Calculator" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button onAction="#handleLogout" styleClass="btn-logout" text="Déconnexion" />
+        </HBox>
+    </top>
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox minWidth="200" spacing="4" styleClass="sidebar">
+
+            <padding>
+                <Insets bottom="24" left="12" right="12" top="24" />
+            </padding>
+
+            <Label styleClass="sidebar-section" text="NAVIGATION" />
+
+            <Button maxWidth="Infinity" onAction="#goToDashboard" styleClass="nav-btn" text="Tableau de bord" />
+
+            <Button maxWidth="Infinity" styleClass="nav-btn nav-active" text="Calculer" />
+
+            <Button maxWidth="Infinity" onAction="#goToHistory" styleClass="nav-btn" text="Historique" />
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Separator />
+
+            <Label styleClass="sidebar-info" text="Norme OMS : 50 L/j" />
+        </VBox>
+    </left>
+
+    <!-- CONTENU -->
+    <center>
+
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+
+            <HBox spacing="20">
+
+                <padding>
+                    <Insets bottom="24" left="24" right="24" top="24" />
+                </padding>
+
+                <!-- COLONNE GAUCHE -->
+                <VBox spacing="16" HBox.hgrow="ALWAYS">
+
+                    <Label styleClass="page-title" text="Calculer la consommation" />
+
+                    <!-- Douche -->
+                    <VBox spacing="10" styleClass="input-card">
+
+                        <Label styleClass="input-card-title" text="Douche" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+
+                            <Label minWidth="160" styleClass="field-label" text="Durée (minutes) :" />
+
+                            <Spinner fx:id="showerMinutesSpinner" minWidth="120" />
+
+                            <Label fx:id="showerPreviewLabel" styleClass="result-inline" text="— L" />
+                        </HBox>
+
+                        <Label styleClass="hint-text" text="Débit moyen : 8 L/min • Norme OMS : 40 L (5 min)" />
+                    </VBox>
+
+                    <!-- Vaisselle -->
+                    <VBox spacing="10" styleClass="input-card">
+
+                        <Label styleClass="input-card-title" text="Vaisselle" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+
+                            <Label minWidth="160" styleClass="field-label" text="Volume (litres) :" />
+
+                            <Spinner fx:id="dishwashingLitersSpinner" minWidth="120" />
+
+                            <Label fx:id="dishwashingPreviewLabel" styleClass="result-inline" text="— L" />
+                        </HBox>
+
+                        <Label styleClass="hint-text" text="Bac fermé : 15 L • Robinet ouvert 5 min : 50 L" />
+                    </VBox>
+
+                    <!-- Arrosage -->
+                    <VBox spacing="10" styleClass="input-card">
+
+                        <Label styleClass="input-card-title" text="Arrosage" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+
+                            <Label minWidth="160" styleClass="field-label" text="Surface (m²) :" />
+
+                            <Spinner fx:id="wateringAreaSpinner" minWidth="120" />
+
+                            <Label fx:id="wateringPreviewLabel" styleClass="result-inline" text="— L" />
+                        </HBox>
+
+                        <Label styleClass="hint-text" text="Estimation : 5 L/m² • Arrosez tôt le matin" />
+                    </VBox>
+
+                    <!-- Agriculture -->
+                    <VBox spacing="10" styleClass="input-card">
+
+                        <Label styleClass="input-card-title" text="Agriculture" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+
+                            <Label minWidth="160" styleClass="field-label" text="Surface (hectares) :" />
+
+                            <Spinner fx:id="agricultureHaSpinner" minWidth="120" />
+
+                            <Label fx:id="agriculturePreviewLabel" styleClass="result-inline" text="— L" />
+                        </HBox>
+
+                        <Label styleClass="hint-text" text="Estimation : 50 000 L/ha (irrigation standard)" />
+                    </VBox>
+
+                    <!-- Autre -->
+                    <VBox spacing="10" styleClass="input-card">
+
+                        <Label styleClass="input-card-title" text="Autre usage" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="12">
+
+                            <Label minWidth="160" styleClass="field-label" text="Volume (litres) :" />
+
+                            <Spinner fx:id="otherLitersSpinner" minWidth="120" />
+                        </HBox>
+                    </VBox>
+
+                    <!-- Notes -->
+                    <VBox spacing="6">
+
+                        <Label styleClass="field-label" text="Notes (optionnel)" />
+
+                        <TextArea fx:id="notesArea" prefRowCount="3" promptText="Ex : Journée de travail agricole..." styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Boutons -->
+                    <HBox spacing="12">
+
+                        <Button maxWidth="Infinity" onAction="#handleCalculate" styleClass="btn-primary btn-lg" text="Calculer" HBox.hgrow="ALWAYS" />
+
+                        <Button fx:id="saveButton" maxWidth="Infinity" onAction="#handleSave" styleClass="btn-secondary btn-lg" text="Enregistrer" HBox.hgrow="ALWAYS" />
+                    </HBox>
+
+                    <Label fx:id="saveStatusLabel" wrapText="true" />
+
+                </VBox>
+
+                <!-- COLONNE DROITE -->
+                <VBox maxWidth="360" minWidth="320" spacing="14">
+
+                    <Label styleClass="page-title" text="Résultats" />
+
+                    <!-- Résultats -->
+                    <VBox spacing="10" styleClass="result-card">
+
+                        <Label styleClass="result-card-title" text="Détail par usage" />
+
+                        <HBox spacing="8">
+                            <Label minWidth="130" styleClass="field-label" text="Douche :" />
+
+                            <Label fx:id="showerResultLabel" text="—" />
+                        </HBox>
+
+                        <HBox spacing="8">
+                            <Label minWidth="130" styleClass="field-label" text="Vaisselle :" />
+
+                            <Label fx:id="dishwashingResultLabel" text="—" />
+                        </HBox>
+
+                        <HBox spacing="8">
+                            <Label minWidth="130" styleClass="field-label" text="Arrosage :" />
+
+                            <Label fx:id="wateringResultLabel" text="—" />
+                        </HBox>
+
+                        <HBox spacing="8">
+                            <Label minWidth="130" styleClass="field-label" text="Agriculture :" />
+
+                            <Label fx:id="agricultureResultLabel" text="—" />
+                        </HBox>
+
+                        <Separator />
+
+                        <HBox spacing="8">
+
+                            <Label minWidth="130" styleClass="result-total-label" text="TOTAL :" />
+
+                            <Label fx:id="totalResultLabel" styleClass="result-total-value" text="—" />
+                        </HBox>
+
+                    </VBox>
+
+                    <!-- OMS -->
+                    <Label fx:id="whoCompareLabel" styleClass="who-compare" wrapText="true" />
+
+                    <!-- Recommandations -->
+                    <VBox spacing="8" styleClass="reco-container">
+
+                        <Label styleClass="section-title" text="Recommandations personnalisées" />
+
+                        <VBox fx:id="recommendationsBox" spacing="8" />
+                    </VBox>
+
+                </VBox>
+
+            </HBox>
+
+        </ScrollPane>
+
+    </center>
+
+</BorderPane>

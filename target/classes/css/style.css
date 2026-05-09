@@ -1,0 +1,200 @@
+/* ═══════════════════════════════
+   GreenThink PRO+
+   Simple • Clean • Modern UI
+   ═══════════════════════════════ */
+
+.root {
+    -fx-font-family: "Segoe UI", Arial;
+
+    /* 🎨 Palette moderne */
+    -primary: #2e7d32;
+    -primary-dark: #1b5e20;
+    -primary-light: #66bb6a;
+
+    -blue: #1e88e5;
+    -blue-light: #e3f2fd;
+
+    -bg: #f4f7fb;
+    -card: #ffffff;
+
+    -text: #1f2937;
+    -muted: #6b7280;
+
+    -border: #e5e7eb;
+
+    -success: #22c55e;
+    -warning: #f59e0b;
+    -danger: #ef4444;
+}
+
+/* ───────── GLOBAL ───────── */
+.main-layout {
+    -fx-background-color: -bg;
+}
+
+/* ───────── TOPBAR ───────── */
+.topbar {
+    -fx-background-color: linear-gradient(to right, -primary-dark, -primary);
+    -fx-padding: 12 20;
+}
+
+.topbar-brand {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* ───────── SIDEBAR ───────── */
+.sidebar {
+    -fx-background-color: #0f172a;
+}
+
+.sidebar-section {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+}
+
+.sidebar-info {
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 11px;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e2e8f0;
+    -fx-padding: 10 12;
+    -fx-background-radius: 8;
+}
+
+.nav-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.08);
+}
+
+.nav-active {
+    -fx-background-color: rgba(255,255,255,0.15);
+    -fx-font-weight: bold;
+}
+
+/* ───────── TITLES ───────── */
+.page-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text;
+}
+
+/* ───────── CARDS ───────── */
+.input-card,
+.result-card,
+.reco-container,
+.chart-card {
+    -fx-background-color: -card;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+    -fx-border-color: -border;
+    -fx-border-radius: 12;
+
+    /* ombre légère moderne */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0, 0, 2);
+}
+
+/* ───────── LABELS ───────── */
+.field-label {
+    -fx-text-fill: -text;
+    -fx-font-weight: bold;
+}
+
+.hint-text {
+    -fx-text-fill: -muted;
+    -fx-font-size: 11px;
+}
+
+/* ───────── RESULTATS ───────── */
+.result-inline {
+    -fx-text-fill: -blue;
+    -fx-font-weight: bold;
+}
+
+.result-total-value {
+    -fx-text-fill: -primary-dark;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+/* ───────── STATUS ───────── */
+.who-ok {
+    -fx-background-color: #ecfdf5;
+    -fx-text-fill: -success;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
+.who-warn {
+    -fx-background-color: #fffbeb;
+    -fx-text-fill: -warning;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
+.who-danger {
+    -fx-background-color: #fef2f2;
+    -fx-text-fill: -danger;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
+
+/* ───────── BUTTONS ───────── */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, -primary, -primary-light);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.btn-primary:hover {
+    -fx-opacity: 0.9;
+}
+
+.btn-secondary {
+    -fx-background-color: -blue-light;
+    -fx-text-fill: -blue;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #dbeafe;
+}
+
+.btn-logout {
+    -fx-background-color: #334155;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+/* ───────── INPUTS ───────── */
+.input-field {
+    -fx-border-color: -border;
+    -fx-border-radius: 8;
+    -fx-padding: 8;
+    -fx-background-radius: 8;
+}
+
+.input-field:focused {
+    -fx-border-color: -primary;
+}
+
+/* ───────── TABLE ───────── */
+.data-table {
+    -fx-background-color: white;
+    -fx-border-color: -border;
+    -fx-border-radius: 8;
+}
+
+.data-table .column-header {
+    -fx-background-color: -primary-dark;
+}
+
+.data-table .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="main-layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.watercalculator.controller.HistoryController">
+
+    <!-- TOPBAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="topbar">
+            <padding><Insets bottom="0" left="20" right="20" top="0" /></padding>
+            <Label styleClass="topbar-brand" text="Water Calculator" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleLogout" styleClass="btn-logout" text="Déconnexion" />
+        </HBox>
+    </top>
+
+    <!-- SIDEBAR -->
+    <left>
+        <VBox minWidth="200" spacing="4" styleClass="sidebar">
+            <padding><Insets bottom="24" left="12" right="12" top="24" /></padding>
+            <Label styleClass="sidebar-section" text="NAVIGATION" />
+            <Button maxWidth="Infinity" onAction="#goToDashboard" styleClass="nav-btn" text="Tableau de bord" />
+            <Button maxWidth="Infinity" onAction="#goToCalculator" styleClass="nav-btn" text="Calculer" />
+            <Button maxWidth="Infinity" styleClass="nav-btn nav-active" text="Historique" />
+            <Region VBox.vgrow="ALWAYS" />
+            <Separator />
+            <Label styleClass="sidebar-info" text="Norme OMS : 50 L/j" />
+        </VBox>
+    </left>
+
+    <!-- CONTENU -->
+    <center>
+        <VBox spacing="16">
+            <padding><Insets bottom="24" left="24" right="24" top="24" /></padding>
+
+            <Label styleClass="page-title" text="Historique des consommations" />
+
+            <!-- Statistiques rapides -->
+            <HBox spacing="16">
+                <VBox spacing="4" styleClass="stat-card stat-card-blue" HBox.hgrow="ALWAYS">
+                    <Label fx:id="totalEntriesLabel" style="-fx-font-size:16px;" styleClass="stat-card-value" text="Chargement..." />
+                </VBox>
+                <VBox spacing="4" styleClass="stat-card stat-card-green" HBox.hgrow="ALWAYS">
+                    <Label fx:id="avgConsumptionLabel" style="-fx-font-size:16px;" styleClass="stat-card-value" text="Chargement..." />
+                </VBox>
+                <HBox alignment="CENTER_RIGHT" spacing="10" HBox.hgrow="ALWAYS">
+                    <Button onAction="#handleRefresh" styleClass="btn-secondary" text="Actualiser" />
+                    <Button onAction="#handleDelete" styleClass="btn-danger" text=" Supprimer la sélection" />
+                </HBox>
+            </HBox>
+
+            <Label fx:id="deleteStatusLabel" wrapText="true" />
+
+            <!-- Légende couleurs -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label styleClass="field-label" text="Légende :" />
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Region prefHeight="14" prefWidth="14" styleClass="legend-ok" />
+                    <Label styleClass="hint-text" text="Dans la norme OMS" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Region prefHeight="14" prefWidth="14" styleClass="legend-warn" />
+                    <Label styleClass="hint-text" text="Dépassement modéré" />
+                </HBox>
+                <HBox alignment="CENTER_LEFT" spacing="6">
+                    <Region prefHeight="14" prefWidth="14" styleClass="legend-danger" />
+                    <Label styleClass="hint-text" text="Dépassement critique" />
+                </HBox>
+            </HBox>
+
+            <!-- Tableau -->
+            <TableView fx:id="historyTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colDate" prefWidth="110" text="Date" />
+                    <TableColumn fx:id="colShower" prefWidth="110" text="Douche" />
+                    <TableColumn fx:id="colDishwashing" prefWidth="110" text="Vaisselle" />
+                    <TableColumn fx:id="colWatering" prefWidth="110" text=" Arrosage" />
+                    <TableColumn fx:id="colAgriculture" prefWidth="120" text="Agriculture" />
+                    <TableColumn fx:id="colTotal" prefWidth="100" text=" Total" />
+                    <TableColumn fx:id="colWho" prefWidth="100" text="🌍 vs OMS" />
+                </columns>
+                <placeholder>
+                    <Label styleClass="muted-text" text="Aucune consommation enregistrée. Commencez une saisie !" />
+                </placeholder>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>
